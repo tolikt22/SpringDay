@@ -1,4 +1,4 @@
-package terela.com.withoutspring.co.withoutspring;// Created by tolik on 11.03.2017.
+package terela.com.withoutspring;// Created by tolik on 11.03.2017.
 
 import java.util.Scanner;
 
