@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="messenger" class="terela.com.spring.MessengerImpl"/>
+
+    <bean id="writer" class="terela.com.spring.WriterToFileImpl" />
+
+    <bean id="app" class="terela.com.spring.Application">
+        <constructor-arg ref="writer" />
+        <constructor-arg ref="messenger" />
+    </bean>
+
+</beans>
+
