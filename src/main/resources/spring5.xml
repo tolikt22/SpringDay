@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <bean id="messenger5" class="terela.com.spring5.MessengerImpl"/>
+    <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
+
+    <bean id="messTime" class="terela.com.spring5.MessageLastTime" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg ref="dateFormat"/>
+    </bean>
+    <!--<bean id="writer5" class="terela.com.spring5.WriterToFileImpl" init-method="init">-->
+    <!--<constructor-arg>-->
+    <!--<bean class="java.util.Date"/>-->
+    <!--</constructor-arg>-->
+    <!--<constructor-arg ref="dateFormat"/>-->
+    <!--</bean>    -->
+    <bean id="cashWriter" class="terela.com.spring5.CacheWriter" destroy-method="destroy">
+        <constructor-arg value="3" type="int" index="0"/>
+        <constructor-arg value="storage6.txt" type="java.lang.String" index="1"/>
+
+    </bean>
+
+    <bean id="app5" class="terela.com.spring5.Application">
+        <constructor-arg ref="cashWriter"/>
+        <constructor-arg ref="messenger5"/>
+    </bean>
+
+</beans>
+

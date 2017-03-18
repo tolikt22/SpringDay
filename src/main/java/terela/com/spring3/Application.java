@@ -1,4 +1,4 @@
-package terela.com.spring2;// Created by tolik on 11.03.2017.
+package terela.com.spring3;// Created by tolik on 11.03.2017.
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -17,19 +17,19 @@ public class Application {
 
     }
 
-    public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring2.xml");
+    public static void main(String[] args) throws InterruptedException {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring3.xml");
+        Thread.sleep(2000);
+        Application app = (Application) ctx.getBean("app3");
 
-        Application app = (Application) ctx.getBean("app2");
-
-        for (int i=0; i<3;i++) {
+        for (int i = 0; i < 3; i++) {
             String message = app.messenger.getMessage();
             app.write(message);
         }
     }
 
-    private void write(String msg){
-        writer.write(new Date() +": "+msg);
+    private void write(String msg) {
+        writer.write(new Date() + ": " + msg);
     }
 
 }
