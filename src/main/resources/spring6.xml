@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="messenger6" class="terela.com.spring6.MessengerImpl"/>
+    <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
+
+    <bean id="messTime" class="terela.com.spring6.MessageLastTime" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg ref="dateFormat"/>
+    </bean>
+
+    <bean id="writer6" class="terela.com.spring6.WriterToFileImpl" init-method="init">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg ref="dateFormat"/>
+    </bean>
+
+    <bean id="cashWriter" class="terela.com.spring6.CacheWriter" destroy-method="destroy">
+        <constructor-arg value="3" type="int" index="0"/>
+        <constructor-arg value="storage6.txt" type="java.lang.String" index="1"/>
+
+    </bean>
+
+    <bean id="app6" class="terela.com.spring6.Application">
+        <constructor-arg ref="writer6"/>
+        <constructor-arg ref="messenger6"/>
+    </bean>
+</beans>
